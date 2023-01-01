@@ -8,7 +8,12 @@ public class Elf {
     private ArrayList<Integer> calorieList;
     public static ArrayList<Elf> elfList = new ArrayList<>();
 
+    public static int elfCount = 0;
+
+    private int elfNumber;
     public Elf(){
+        elfNumber = elfCount;
+        elfCount++;
         totalCalories = 0;
         calorieList = new ArrayList();
         elfList.add(this);
@@ -20,23 +25,28 @@ public class Elf {
     public int getTotalCalories(){
         return totalCalories;
     }
+    public int getElfNumber(){
+        return elfNumber;
+    }
     public void printAll(){
         for (int eachCal: calorieList){
             System.out.println(eachCal);
         }
     }
 
-    public void printHighest(){
+
+    //static method
+    public static void printHighest(){
         if (elfList.size() == 1){
             System.out.println(elfList.get(0));
         }else {
-            Elf checkElf = this;
-            for (int i = 0; i < elfList.size(); i++){
-                if (elfList.get(i).totalCalories > checkElf.totalCalories){
+            Elf checkElf = elfList.get(0);
+            for (int i = 1; i < elfList.size(); i++){
+                if (elfList.get(i).getTotalCalories() > checkElf.getTotalCalories()){
                     checkElf = elfList.get(i);
                 }
             }
-            checkElf.printAll();
+            System.out.println(checkElf.getElfNumber() + ":" + checkElf.getTotalCalories());
         }
     }
 }
