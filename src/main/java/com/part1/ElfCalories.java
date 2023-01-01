@@ -34,6 +34,8 @@ public class ElfCalories {
         } catch (Exception e) {
             System.out.println("File not found or doesn't exist: " + e);
         }
-        Elf.printHighest();
+
+        Elf.sortCalorie();
+        Elf.printTopThree();
     }
 }
